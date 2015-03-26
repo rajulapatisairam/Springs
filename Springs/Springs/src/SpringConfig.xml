@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd" 
+    default-init-method="init" default-destroy-method="destroy">
+   <bean id="springBean" class="com.spring.practice.HelloSpring">
+   <property name="greeting" value="Hello Srings"/>
+   </bean>
+   <bean id="restarent" class="com.spring.practice.Restarunt"  >
+   <constructor-arg ref="tea" />
+   <constructor-arg ref="coffie" />
+   <property name="waiters">
+   <list>
+   <value>Kode Siva Krishna</value>
+   <value>Kalyana Srinivas Rao</value>
+   <value>Polisetty Tukluck</value>
+   </list>
+   </property>
+   </bean>
+   <bean id="tea" class="com.spring.practice.Tea"/>
+   <bean id="coffie" class="com.spring.practice.Coffie"/>
+<bean class="com.spring.practice.postprocessor.DemoBeanPostProcessor"></bean>
+</beans>
