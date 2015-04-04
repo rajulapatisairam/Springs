@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+<meta charset="ISO-8859-1">
+<title>{{title}}</title>
+<script src="js/angular.min.js"></script>
+<script type="text/javascript">
+var myApp=angular.module('myApp',[]);
+myApp.controller('myController',function($scope){
+	
+	$scope.fname="Sairam Rajulapati";
+     
+	$scope.$watch('fname',function(newName,oldName){
+console.log('old Name'+oldName+' Changed to '+newName);
+});
+
+$scope.subjects=['Java','.net','oracle','c#'];
+$scope.addSubject=function(){
+$scope.subjects.push($scope.newSubject);
+$scope.newSubject="";
+}
+
+$scope.reverse=true;
+$filterText='order'
+$scope.subjectsDetails=[{'author':'sairam rajulapati','subject':'Java','order':1},
+                  {'author':'Naveen Vallabhaneni','subject':'.NET','order':2},
+				  {'author':'Rajendra','subject':'EXCEL','order':3},
+				  {'author':'BOGI','subject':'MSBI','order':4}];
+$scope.removeSubject=function(subject){
+var index=$scope.subjects.indexOf(subject);
+$scope.subjects.splice(index,1);
+}
+});
+
+</script>
+</head>
+<body>
+Hello Angular Examples
+Title Here <input type="text" ng-model="title"/><br>
+<input type="text" ng-model="name"/>
+Input Text Here: {{name}}
+
+<br>
+<div  ng-controller="myController">
+
+Name is :<input type="text" ng-model="fname"/> {{fname}}
+<Br>
+Subjects are <ul>
+<br> Add Subjects here <input type="text" ng-model="newSubject"/> : <input type="button" value="click" ng-click="addSubject()" /><br>
+<li ng-repeat="subject in subjects">{{subject}} <a href ="" ng-click="removeSubject(subject)"> Remove</a></li>
+</ul>
+<br>
+<!-- Table -->
+Search Text : <input type="text" ng-model="tableSearch"/><br>
+<table border=1>
+<thead>
+<tr align="center">
+<td> <a href="" ng-click="filterText='order';reverse=!reverse"> Sno </a></td>
+<td> <a href=""  ng-click="filterText='author';reverse=!reverse"> author </a> </td>
+<td> <a href=""  ng-click="filterText='subject';reverse=!reverse"> Subject </a> </td>
+</tr>
+</thead>
+<tbody>
+<tr ng-repeat="subject in subjectsDetails|filter:tableSearch|orderBy: filterText:reverse">
+<td> {{subject.order}}</td>
+<td> {{subject.author}}</td>
+<td> {{subject.subject}}</td>
+</tr>
+</tbody>
+</table>
+</div>
+</body>
+</html>
